@@ -52,7 +52,7 @@ const PlacePage = () => {
       price: numberOfDays * place.price,
     });
     const bookingId = response.data._id;
-    setRedirect(`/account/bookings/${bookingId}`);
+    setRedirect(`/account/bookings`);
   }
 
   if (redirect) {
