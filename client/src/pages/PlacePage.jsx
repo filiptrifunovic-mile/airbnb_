@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { differenceInCalendarDays } from "date-fns";
 import { UserContext } from "../UserContext";
+import Image from "../Image";
 
 const PlacePage = () => {
   const { id } = useParams();
@@ -51,7 +52,7 @@ const PlacePage = () => {
       price: numberOfDays * place.price,
     });
     const bookingId = response.data._id;
-    setRedirect(`/account/bookings`);
+    setRedirect(`/account/bookings/${bookingId}`);
   }
 
   if (redirect) {
@@ -90,7 +91,7 @@ const PlacePage = () => {
           {place?.photos?.length > 0 &&
             place.photos.map((photo) => (
               <div>
-                <img src={"http://localhost:4000/uploads/" + photo} alt="" />
+                <Image src={photo} alt="" />
               </div>
             ))}
         </div>
@@ -135,8 +136,8 @@ const PlacePage = () => {
           <div className="">
             {place.photos?.[0] && (
               <div className="">
-                <img
-                  src={"http://localhost:4000/uploads/" + place.photos?.[0]}
+                <Image
+                  src={place.photos?.[0]}
                   alt="photo"
                   className="aspect-square object-cover w-full h-[600px]"
                 />
@@ -145,16 +146,16 @@ const PlacePage = () => {
           </div>
           <div className="grid">
             {place.photos?.[1] && (
-              <img
-                src={"http://localhost:4000/uploads/" + place.photos?.[1]}
+              <Image
+                src={place.photos?.[1]}
                 alt="photo"
                 className="aspect-square object-cover h-[300px]"
               />
             )}
             {place.photos?.[2] && (
               <div className="overflow-hidden">
-                <img
-                  src={"http://localhost:4000/uploads/" + place.photos?.[2]}
+                <Image
+                  src={place.photos?.[2]}
                   alt="photo"
                   className="aspect-square object-cover relative top-2 h-[300px]"
                 />
